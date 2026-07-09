@@ -3,16 +3,16 @@
 WORK IN PROGRESS
 Claude Anthropic and/or Ollama chat
 
-# AI Agent can understand instructions and tools (programmatically made)
+## AI Agent can understand instructions and tools (programmatically made)
 
 ## to do
-# comparing documents tool
-# component create Tool with form (json format is not required)
+- comparing documents tool
+- component create Tool with form (json format is not required)
 - caling @app/lib/tools to register tool
-# Register tools using MCP simple server
-# list competences
-# list models, context from mcp server in app
-# Make context for models, tools, system instructions etc. 
+- Register tools using MCP simple server
+- list competences
+- list models, context from mcp server in app
+- Make context for models, tools, system instructions etc. 
 
 First, run the development server:
 ```bash
