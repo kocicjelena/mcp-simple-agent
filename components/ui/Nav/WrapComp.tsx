@@ -1,5 +1,5 @@
 "use client";
-import { useContextState } from "@/context/GlobalContext";
+import { useContextState } from "@/globalx/GlobalContext";
 import Link from "next/link";
 import React, { useState } from "react";
 import styles from '@/page.module.css';

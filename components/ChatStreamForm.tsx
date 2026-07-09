@@ -8,7 +8,7 @@ import type {
   WorkerRequestMessage,
   WorkerOutMessage,
 } from "@/lib/types/chat";
-import { useContextState } from "@/context/GlobalContext";
+import { useContextState } from "@/globalx/GlobalContext";
 import styles from '@/page.module.css';
 import tool from "@/lib/tool";
 //const DEFAULT_MODEL = "";

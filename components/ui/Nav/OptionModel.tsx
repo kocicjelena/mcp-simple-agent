@@ -2,7 +2,7 @@
 'use client'
 import { ChangeEvent, useState } from "react";
 import listModels from "@/lib/list";
-import { useContextActions, useContextState } from "@/context/GlobalContext";
+import { useContextActions, useContextState } from "@/globalx/GlobalContext";
 import sha from "@/utils/sha";
 
 interface Model { 

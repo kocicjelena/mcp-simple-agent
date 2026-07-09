@@ -222,7 +222,7 @@ export default function McpServerShowcaseForm() {
     >
       <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
         <strong>Registered MCP tools</strong>
-        <button type="button" onClick={loadTools} disabled={loadingTools}>
+        <button type="button" onClick={loadTools} disabled={true}>
           {loadingTools ? "Refreshing..." : "Refresh"}
         </button>
       </div>

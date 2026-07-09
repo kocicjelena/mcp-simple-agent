@@ -99,19 +99,18 @@ function registerTool(
   server.registerTool(name, config as any, handler as any);
 }
 export function registerSimpleTools(server: McpServer) {
-  registerTool(
-    server,
-    "server_time",
-    {
-      description: "Return the current server time as an ISO string.",
-      annotations: { readOnlyHint: true, openWorldHint: false },
-    },
-    async () => ({
-      content: [{ type: "text", text: new Date().toISOString() }],
-    })
-  );
-
-  registerTool(
+  // registerTool(
+  //   server,
+  //   "server_time",
+  //   {
+  //     description: "Return the current server time as an ISO string.",
+  //     annotations: { readOnlyHint: true, openWorldHint: false },
+  //   },
+  //   async () => ({
+  //     content: [{ type: "text", text: new Date().toISOString() }],
+  //   })
+  // );
+    registerTool(
     server,
     "greet",
     {

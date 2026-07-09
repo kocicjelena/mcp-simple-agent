@@ -1,4 +1,5 @@
 
+
 ## MCP server - make your Agent
 WORK IN PROGRESS
 Claude Anthropic and/or Ollama chat
@@ -13,7 +14,7 @@ Claude Anthropic and/or Ollama chat
 - list competences
 - list models, context from mcp server in app
 - Make context for models, tools, system instructions etc. 
-
+❤️ Ollama
 First, run the development server:
 ```bash
 npm run dev &

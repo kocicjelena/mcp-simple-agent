@@ -20,12 +20,12 @@ const ingestFunction = async (doc: DocEntry) => {
 // replace my-skill with actual skill from skills (local)
 const myskill = 'my-skill'
 
-export function registerAllTools(server:any, docs: DocEntry[]) {
+export function registerAllTools(server:any, docs?: DocEntry[]) {
   registerCompareTool(server);
-  registerSearchTool(server, docs);
-  registerFetchTool(server, docs);
+  //registerSearchTool(server, docs);
+  //registerFetchTool(server, docs);
   registerSkillDispatcherTool(server);
-  registerIngestTool(server, docs, ingestFunction);
+  //registerIngestTool(server, docs, ingestFunction);
   registerHelloTool(server);
   registerMySkillTool(server, myskill)
 }

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import * as mammoth from "mammoth";
-import type { DocEntry } from "@/types/doc-entry";
+import type { DocEntry } from "@/lib/types/doc-entry";
 
 type ToolProperty = {
   type?: string | string[];
@@ -134,7 +134,7 @@ export default function RagToolForm() {
   const properties = selectedTool?.inputSchema?.properties ?? {};
   const required = selectedTool?.inputSchema?.required ?? [];
 
-  const loadTools = async () => {
+  const loadTools2 = async () => {
     setLoadingTools(true);
     setError(null);
 
@@ -162,31 +162,60 @@ export default function RagToolForm() {
   };
 
   useEffect(() => {
+
+  const loadTools = async () => {
+    setLoadingTools(true);
+    setError(null);
+
+    try {
+      const response = await fetch("/api/apptool");
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(data?.error ?? response.statusText);
+      }
+
+      const nextTools = (data?.tools ?? []) as ToolOption[];
+      setTools(nextTools);
+
+      if (nextTools.length > 0) {
+        setSelectedToolName((current) =>
+          current && nextTools.some((tool) => tool.name === current) ? current : nextTools[0].name
+        );
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setLoadingTools(false);
+    }
+  };
+
     loadTools();
   }, []);
 
-  useEffect(() => {
-    const next: Record<string, string> = {};
-    Object.keys(properties).forEach((key) => {
-      next[key] = argsMap[key] ?? "";
-    });
-    setArgsMap(next);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedToolName]);
+  // useEffect(() => {
+  // const next: Record<string, string> = {};
+  //   Object.keys(properties).forEach((key) => {
+  //     next[key] = argsMap[key] ?? "";
+  //   });
+ 
+  //   setArgsMap(next);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [selectedToolName]);
 
-  useEffect(() => {
-    if (selectedToolName !== "ingest") return;
-    const entry = entries[selectedEntryIndex];
-    if (!entry) return;
+  // useEffect(() => {
+  //   if (selectedToolName !== "ingest") return;
+  //   const entry = entries[selectedEntryIndex];
+  //   if (!entry) return;
 
-    setArgsMap((prev) => ({
-      ...prev,
-      id: String(entry.id),
-      title: entry.title,
-      text: entry.text,
-      url: entry.url ?? "",
-    }));
-  }, [selectedToolName, entries, selectedEntryIndex]);
+  //   setArgsMap((prev) => ({
+  //     ...prev,
+  //     id: String(entry.id),
+  //     title: entry.title,
+  //     text: entry.text,
+  //     url: entry.url ?? "",
+  //   }));
+  // }, [selectedToolName, entries, selectedEntryIndex]);
 
   const processUploadedFiles = async (files: File[]) => {
     setProcessingFiles(true);
@@ -312,7 +341,7 @@ export default function RagToolForm() {
     >
       <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
         <strong>Registered MCP tools</strong>
-        <button type="button" onClick={loadTools} disabled={loadingTools}>
+        <button type="button" onClick={loadTools2} disabled={loadingTools}>
           {loadingTools ? "Refreshing..." : "Refresh"}
         </button>
       </div>

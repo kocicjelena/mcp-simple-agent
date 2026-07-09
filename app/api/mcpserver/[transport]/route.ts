@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { registerAllTools } from "@/lib/mcp/registry";
+import { loadDocs } from "@/lib/mcp/store";
 import { registerSimpleTools } from "@/lib/tools/registerTools";
 import {
   McpServer,
@@ -16,8 +18,8 @@ async function createServer() {
     name: "nextjs-simple-mcpserver",
     version: "1.0.0",
   });
-
-  registerSimpleTools(server);
+  
+ registerSimpleTools(server);
   return server;
 }
 
