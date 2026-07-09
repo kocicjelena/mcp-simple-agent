@@ -1,0 +1,25 @@
+import axios from 'axios'
+//import BASE_URL from './baseurl';
+
+const listModels = async ()=> {
+    const urlstring = '/api/list';
+    try {
+      const response = await axios({
+        method: 'get',
+        url: urlstring
+      }).then((responseData)=>{
+        //console.log(responseData.data,'libs/listmodel');
+        return responseData})
+      .catch(error => {
+          //console.log(error.response)
+      });
+       if(response) 
+        //const responseData = response;
+       return response;
+       //response is data.response, which is the list of models
+    } catch (error) {
+     //console.log(error,'er');
+      return null;
+    }
+  };
+  export default listModels;
