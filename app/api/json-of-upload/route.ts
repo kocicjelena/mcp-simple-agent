@@ -1,14 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextApiRequest, NextApiResponse } from 'next'
 import { loadDocs } from '@/lib/mcp/store';
-import { useContextActions, useContextState } from '@/context/GlobalContext';
+import { useContextActions, useContextState } from '@/globalx/GlobalContext';
 
+  // TO DO
+  // const docs = await loadDocs();
+  // const { state } = useContextState();
+  // const { setPdfEntries, setPdfLoading, setPdfError, clearPdfEntries, fetchPdfFromApi } = useContextActions();
+    
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
  // to do 
  //make use of context pdf state
-  const docs = await loadDocs();
-  const { pdf } = useContextState();
-    const { setPdfEntries, setPdfLoading, setPdfError, clearPdfEntries, fetchPdfFromApi } = useContextActions();
-    
+
   try {
     if (!Array.isArray(pdf)) {
       throw new Error('Cannot find user data')

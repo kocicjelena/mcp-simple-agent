@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { writeFile, readFile } from "fs/promises";
 import path from "path";
-import { DocEntry } from "@/types/doc-entry";
+import { DocEntry } from "@/lib/types/doc-entry";
 
 export async function GET() {
   try {
+      // TO DO
     const dataDir = path.join(process.cwd(), "data");
     const filePath = path.join(dataDir, "documents.json");
     

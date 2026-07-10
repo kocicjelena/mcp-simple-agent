@@ -8,16 +8,13 @@ import file from "../file";
 
 export async function loadDocs(): Promise<DocEntry[]> {
   try {
-   // const raw =await getPublicFile("documents.json") as any;
-    const filePath = path.join(process.cwd(), "data", "documents.json");
+     // TO DO
+   const filePath = path.join(process.cwd(), "data", "documents.json");
    const raw = await readFile(filePath, "utf-8");
-   // const raw = await file("data/documents.json") as any;
     console.log(raw)
     return JSON.parse(raw) as DocEntry[];
-   // return raw;
-    // as DocEntry[];
   } catch (err) {
-  console.log(err)
+      console.log(err)
     return [];
   }
 }

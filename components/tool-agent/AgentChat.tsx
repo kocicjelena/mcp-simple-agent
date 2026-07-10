@@ -135,6 +135,7 @@ export default function AgentChat() {
 
   return (
     <>
+    <h1>Agent is decision-maker and the tools are his powers</h1>
     <div style={{ display: "flex", gap: 20, maxWidth: 1100, margin: "0 auto", alignItems: "flex-start" }}>
       {/* Sidebar: configuration */}
       <aside style={{ width: 340, display: "flex", flexDirection: "column", gap: 16, flexShrink: 0 }}>

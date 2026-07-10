@@ -100,6 +100,7 @@ function stringifyToolResult(result: any): string {
 }
 
 export async function POST(req: Request) {
+
   try {
     const body = (await req.json()) as ChatRequest;
     const model = body.model || "llama3.1";

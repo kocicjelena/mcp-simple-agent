@@ -1,5 +1,5 @@
 
-
+![alt text](image.png)
 ## MCP server - make your Agent
 WORK IN PROGRESS
 Claude Anthropic and/or Ollama chat

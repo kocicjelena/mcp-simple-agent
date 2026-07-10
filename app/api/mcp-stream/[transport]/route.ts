@@ -1,6 +1,7 @@
-// import { createMcpHandler } from "mcp-handler";
-// import { loadDocs } from "@/lib/mcp/store";
-// import { registerAllTools } from "@/lib/mcp/registry";
+//import { createMcpHandler } from "mcp-handler";
+import { loadDocs } from "@/lib/mcp/store";
+import { registerAllTools } from "@/lib/mcp/registry";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
 
 // const handler = createMcpHandler(
 //   async (server) => {
@@ -19,3 +20,15 @@
 // );
 
 // export { handler as GET, handler as POST, handler as DELETE };
+  // TO DO
+     export async function POST(req: Request) {
+ 
+      const server = new McpServer({
+        name: "nextjs-simple-mcpserver",
+        version: "1.0.0",
+      });
+      
+      registerAllTools(server);
+    return server;
+    }
+        
