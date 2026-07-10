@@ -2,6 +2,7 @@
 import { loadDocs } from "@/lib/mcp/store";
 import { registerAllTools } from "@/lib/mcp/registry";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
+import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/server";
 
 // const handler = createMcpHandler(
 //   async (server) => {
@@ -21,8 +22,9 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
 
 // export { handler as GET, handler as POST, handler as DELETE };
   // TO DO
-     export async function POST(req: Request) {
- 
+   //  export async function POST(req: Request) {
+async function createServer() {
+  
       const server = new McpServer({
         name: "nextjs-simple-mcpserver",
         version: "1.0.0",
@@ -31,4 +33,18 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
       registerAllTools(server);
     return server;
     }
+    async function handleMcpRequest(request: Request): Promise<Response> {
+  const transport = new WebStandardStreamableHTTPServerTransport({
+    sessionIdGenerator: undefined,
+    enableJsonResponse: true,
+  });
+
+  const server = await createServer();
+  await server.connect(transport);
+
+  return transport.handleRequest(request);
+}
+
+export { handleMcpRequest as DELETE, handleMcpRequest as GET, handleMcpRequest as POST };
+
         

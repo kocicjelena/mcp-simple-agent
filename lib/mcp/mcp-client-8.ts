@@ -17,7 +17,7 @@ function resolveBaseUrl(origin?: string, mcpPath: string = DEFAULT_MCP_PATH): UR
 
 export async function mcpClient(origin?: string, mcpPath: string = DEFAULT_MCP_PATH) {
   const client = new Client(
-    { name: "nextjs-mcp-tool-client", version: "1.0.0" },
+    { name: "nextjs-mcp-tool-made", version: "1.0.0" },
     { capabilities: {} }
   );
 

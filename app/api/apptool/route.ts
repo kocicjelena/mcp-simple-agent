@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
-import { mcpClientNew } from "@/lib/mcp/mcpclientnew";
+import { mcpClient } from "@/lib/mcp/mcp-client-8";
 
 type ToolCallPayload = {
   toolName?: string;
@@ -25,12 +25,12 @@ function resultToText(result: any): string {
 }
 
 export async function GET(req: Request) {
-  let client: Awaited<ReturnType<typeof mcpClientNew>>["client"] | null = null;
-  let transport: Awaited<ReturnType<typeof mcpClientNew>>["transport"] | null = null;
+  let client: Awaited<ReturnType<typeof mcpClient>>["client"] | null = null;
+  let transport: Awaited<ReturnType<typeof mcpClient>>["transport"] | null = null;
 
   try {
     const origin = new URL(req.url).origin;
-    const connection = await mcpClientNew(origin);
+    const connection = await mcpClient(origin);
     client = connection.client;
     transport = connection.transport;
 
@@ -64,8 +64,8 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  let client: Awaited<ReturnType<typeof mcpClientNew>>["client"] | null = null;
-  let transport: Awaited<ReturnType<typeof mcpClientNew >>["transport"] | null = null;
+  let client: Awaited<ReturnType<typeof mcpClient>>["client"] | null = null;
+  let transport: Awaited<ReturnType<typeof mcpClient >>["transport"] | null = null;
 
   try {
     const body = (await req.json()) as ToolCallPayload;
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
     }
 
     const origin = new URL(req.url).origin;
-    const connection = await mcpClientNew(origin);
+    const connection = await mcpClient(origin);
     client = connection.client;
     transport = connection.transport;
 
