@@ -6,7 +6,9 @@ import styles from '@/page.module.css';
 
 const routes = [
   { href: "/",            label: "Home" },
-  { href: "/mcpserver", label: "MCP Server (API)" },
+  { href: "/mcpserver", label: "MCP Server (API showcase)" },
+    { href: "/ragtool", label: "Prepeare RAG and Toolset II" },
+      { href: "/chatai", label: "Agent creator (tool and instructions)" },
   { href: "/stream",        label: "stream " },
   { href: "/tool-test",      label: "tool test " },
   // { href: "/ragtool",        label: "rag Flow" },
