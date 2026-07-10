@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useContextActions } from "@/globalx/GlobalContext";
 import { ChangeEvent, useEffect, useState } from "react";
 
 export type Provider = "ollama" | "anthropic";
@@ -26,6 +27,7 @@ export default function ProviderModelPicker({
   model,
   onModelChange,
 }: Props) {
+  const {setProvider}= useContextActions()
   const [ollamaModels, setOllamaModels] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -55,14 +57,15 @@ export default function ProviderModelPicker({
     }
   };
 
-  // useEffect(() => {
-  //   if (provider === "ollama") {
-  //     loadOllamaModels();
-  //   } else if (!ANTHROPIC_MODELS.some((m) => m.value === model)) {
-  //     onModelChange(ANTHROPIC_MODELS[0].value);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [provider]);
+  useEffect(() => {
+    if (provider === "ollama") {
+      setProvider(provider)
+     //loadOllamaModels();
+    } else if (!ANTHROPIC_MODELS.some((m) => m.value === model)) {
+      onModelChange(ANTHROPIC_MODELS[0].value);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [provider]);
 
   const handleProvider = (e: ChangeEvent<HTMLSelectElement>) => {
     loadOllamaModels();

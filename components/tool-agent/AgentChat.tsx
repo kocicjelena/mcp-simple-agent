@@ -7,6 +7,7 @@ import InstructionForm from "./InstructionForm";
 import ToolChecklist from "./ToolChecklist";
 // Reuse your existing tool maker unchanged.
 import ToolForm from "@/components/ToolForm";
+import { useContextState } from "@/globalx/GlobalContext";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -25,7 +26,9 @@ type InstructionPreset = { id: string; name: string; instructions: string };
  * to the unified POST /api/chat route, which returns a provider-agnostic shape:
  *   { message: { content }, toolTrace[], availableTools[] }
  */
+
 export default function AgentChat() {
+ const { agent} = useContextState();
   const [provider, setProvider] = useState<Provider>("ollama");
   const [model, setModel] = useState("llama3.1");
 
@@ -69,7 +72,7 @@ export default function AgentChat() {
     }
     }
      loadInstructions();
-     
+     //loadInstructionPresets()
   }, []); 
 
   // useEffect(() => {
@@ -105,7 +108,8 @@ export default function AgentChat() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           provider,
-          model: provider === "ollama" ? model : undefined,
+          model:agent.modelnpm r,
+          //model: provider === "ollama" ? model : undefined,
           anthropicModel: provider === "anthropic" ? model : undefined,
           system: systemText || undefined,
           enabledTools,
